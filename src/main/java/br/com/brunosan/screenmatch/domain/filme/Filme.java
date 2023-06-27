@@ -1,11 +1,21 @@
 package br.com.brunosan.screenmatch.domain.filme;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "filmes")
 public class Filme {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     private String nome;
     private Integer duracaoEmMinutos;
     private Integer anoLancamento;
     private String genero;
+
+    public Filme() {}
 
     public Filme(DadosCadastroFilme dados) {
         this.nome = dados.nome();
@@ -22,6 +32,14 @@ public class Filme {
                 ", anoLancamento=" + anoLancamento +
                 ", genero='" + genero + '\'' +
                 '}';
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getNome() {
