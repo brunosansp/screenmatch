@@ -6,6 +6,7 @@ import br.com.brunosan.screenmatch.repositories.FilmeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,6 +36,12 @@ public class FilmeController {
     public String cadastraFilme(DadosCadastroFilme dados) {
         Filme filme = new Filme(dados);
         filmeRepository.save(filme);
+        return "redirect:/filmes";
+    }
+
+    @DeleteMapping
+    public String removeFilme(Long id) {
+        filmeRepository.deleteById(id);
         return "redirect:/filmes";
     }
 }
